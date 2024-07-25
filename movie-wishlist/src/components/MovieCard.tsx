@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './MovieCard.scss';
 
 interface MovieCardProps {
   title: string;

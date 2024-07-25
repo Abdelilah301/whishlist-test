@@ -13,8 +13,13 @@ interface Movie {
 
 const Wishlist: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [filter, setFilter] = useState<string | null>(null);
+
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedMovies, setSelectedMovies] = useState<number[]>([]);
   const [isGridView, setIsGridView] = useState(true);
+
+  const totalTitles: number = movies.length;
 
   useEffect(() => {
     fetch("/data.json")
@@ -23,7 +28,11 @@ const Wishlist: React.FC = () => {
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
-
+  const filteredMovies = movies.filter(
+    (movie) =>
+      (!filter || movie.categories.includes(filter)) &&
+      movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleSelectMovie = (id: number) => {
     setSelectedMovies((prevSelected) =>
@@ -43,10 +52,22 @@ const Wishlist: React.FC = () => {
   return (
     <div className="wishlist">
       <h1>Wishlist</h1>
-     
+
+      <div className="filters">
+        <button onClick={() => setFilter(null)}>All</button>
+        <button onClick={() => setFilter("Horror")}>+ Horror</button>
+        <button onClick={() => setFilter("Comedy")}>+ Comedy</button>
+        <button onClick={() => setFilter("4K")}>+ 4K</button>
+      </div>
+      <div>Titles ({totalTitles})</div>
       <div className="actions">
         <div className="search-bar">
-         
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
           <img src="/Icon-search.svg" alt="Search" />
         </div>
         <button className="add-movie">
@@ -71,7 +92,7 @@ const Wishlist: React.FC = () => {
         </button>
       </div>
       <div className={isGridView ? "movie-grid" : "movie-list"}>
-        {movies.map((movie) => (
+        {filteredMovies.map((movie) => (
           <MovieCard
             key={movie.id}
             {...movie}
