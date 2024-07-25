@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import MovieCard from "./MovieCard";
+import "./Wishlist.scss";
 
 interface Movie {
   id: number;
@@ -85,7 +87,14 @@ const Wishlist: React.FC = () => {
         </button>
       </div>
       <div className={isGridView ? "movie-grid" : "movie-list"}>
-      
+        {filteredMovies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            {...movie}
+            selected={selectedMovies.includes(movie.id)}
+            onSelect={() => handleSelectMovie(movie.id)}
+          />
+        ))}
       </div>
     </div>
   );
