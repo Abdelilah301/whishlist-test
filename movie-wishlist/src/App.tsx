@@ -1,7 +1,13 @@
 import React from "react";
+import Wishlist from "./components/Wishlist";
+import "./App.scss";
 
-function App() {
-  return <div className="App">Hello</div>;
-}
+const App: React.FC = () => {
+  return (
+    <div className="app">
+      <Wishlist />
+    </div>
+  );
+};
 
 export default App;
