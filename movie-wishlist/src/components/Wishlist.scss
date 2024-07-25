@@ -1,0 +1,134 @@
+.wishlist {
+  padding: 20px;
+  color: #fff;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    button {
+      background-color: #444;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        background-color: #555;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: #333;
+      border-radius: 5px;
+      padding: 5px 10px;
+
+      input {
+        background: none;
+        border: none;
+        color: #fff;
+        outline: none;
+        padding: 5px;
+        margin-right: 5px;
+      }
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .add-movie {
+      display: flex;
+      align-items: center;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+
+    .view-toggle {
+      display: flex;
+      gap: 5px;
+
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 5px;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+
+        &.active {
+          background-color: #444;
+        }
+      }
+    }
+
+    .delete-selection {
+      background-color: transparent;
+      font-weight: bold;
+      color: #ff4444;
+      border: 1px solid #ff4444;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s, color 0.3s, border 0.3s;
+
+      &:hover {
+        background-color: #ff4444;
+        color: #fff;
+        border: 1px solid #ff4444;
+      }
+    }
+  }
+
+  .movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+  }
+
+  .movie-list {
+    display: block;
+  }
+
+  .movie-grid .movie-card {
+    transition: transform 0.2s;
+    &:hover {
+      border: 1px solid rgb(2, 106, 252);
+      transform: scale(1.05);
+    }
+  }
+}
